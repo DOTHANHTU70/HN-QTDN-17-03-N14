@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_cham_cong_root"
+              name="Chấm công"
+              sequence="10"/>
+
+    <menuitem id="menu_hr_cham_cong"
+              name="Danh sách chấm công"
+              parent="menu_cham_cong_root"
+              action="quan_ly_cham_cong.action_hr_cham_cong"
+              sequence="1"/>
+
+    <menuitem id="menu_bang_cham_cong"
+              name="Bảng chấm công"
+              parent="menu_cham_cong_root"
+              action="quan_ly_cham_cong.action_bang_cham_cong"
+              sequence="2"/>
+    <menuitem id="menu_hr_don_tu"
+          name="Đơn từ"
+          parent="menu_cham_cong_root"
+          action="quan_ly_cham_cong.action_hr_don_tu"
+          sequence="2"/>
+    <menuitem id="menu_hr_dot_dang_ky"
+          name="Đợt đăng ký"
+          parent="menu_cham_cong_root"
+          action="quan_ly_cham_cong.action_hr_dot_dang_ky"
+          sequence="4"/>
+    <menuitem id="menu_hr_dang_ky_ca"
+          name="Đăng ký ca"
+          parent="menu_cham_cong_root"
+          action="quan_ly_cham_cong.action_hr_dang_ky_ca"
+          sequence="5"/>
+
+</odoo>

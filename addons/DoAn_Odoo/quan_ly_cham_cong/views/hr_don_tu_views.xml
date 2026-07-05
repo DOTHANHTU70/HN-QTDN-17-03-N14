@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree -->
+    <record id="view_hr_don_tu_tree" model="ir.ui.view">
+        <field name="name">hr.don.tu.tree</field>
+        <field name="model">hr_don_tu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="loai_don"/>
+                <field name="ngay"/>
+                <field name="trang_thai"/>
+                <field name="nguoi_duyet"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_hr_don_tu_form" model="ir.ui.view">
+        <field name="name">hr.don.tu.form</field>
+        <field name="model">hr_don_tu</field>
+        <field name="arch" type="xml">
+            <form string="Đơn từ">
+
+                <header>
+
+                    <button name="action_duyet"
+                            type="object"
+                            string="Duyệt"
+                            class="btn-primary"
+                            attrs="{'invisible':[('trang_thai','!=','cho_duyet')]}"/>
+
+                    <button name="action_tu_choi"
+                            type="object"
+                            string="Từ chối"
+                            class="btn-secondary"
+                            attrs="{'invisible':[('trang_thai','!=','cho_duyet')]}"/>
+
+                    <field name="trang_thai"
+                           widget="statusbar"
+                           statusbar_visible="cho_duyet,da_duyet,tu_choi"/>
+
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="nhan_vien_id"/>
+                        <field name="loai_don"/>
+                        <field name="ngay"/>
+                        <field name="ly_do"/>
+                    </group>
+
+                    <group string="Thông tin duyệt">
+                        <field name="nguoi_duyet" readonly="1"/>
+                        <field name="ngay_duyet" readonly="1"/>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hr_don_tu" model="ir.actions.act_window">
+        <field name="name">Đơn từ</field>
+        <field name="res_model">hr_don_tu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

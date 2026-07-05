@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_tham_so_luong_tree" model="ir.ui.view">
+        <field name="name">hr.tham.so.luong.tree</field>
+        <field name="model">hr_tham_so_luong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ten"/>
+                <field name="cong_chuan"/>
+                <field name="bhxh"/>
+                <field name="bhyt"/>
+                <field name="bhtn"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_tham_so_luong_form" model="ir.ui.view">
+        <field name="name">hr.tham.so.luong.form</field>
+        <field name="model">hr_tham_so_luong</field>
+        <field name="arch" type="xml">
+            <form string="Tham số lương">
+                <sheet>
+                    <group>
+                        <field name="ten"/>
+
+                        <field name="cong_chuan"/>
+
+                        <field name="bhxh"/>
+                        <field name="bhyt"/>
+                        <field name="bhtn"/>
+
+                        <field name="ot_ngay_thuong"/>
+                        <field name="ot_cuoi_tuan"/>
+                        <field name="ot_ngay_le"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_tham_so_luong"
+            model="ir.actions.act_window">
+        <field name="name">Tham số lương</field>
+        <field name="res_model">hr_tham_so_luong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

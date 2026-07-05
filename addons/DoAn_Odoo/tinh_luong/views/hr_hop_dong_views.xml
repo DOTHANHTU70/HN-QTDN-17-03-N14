@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_hop_dong_tree" model="ir.ui.view">
+        <field name="name">hr.hop.dong.tree</field>
+        <field name="model">hr_hop_dong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="loai_hop_dong"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="luong_thoa_thuan"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_hop_dong_form" model="ir.ui.view">
+        <field name="name">hr.hop.dong.form</field>
+        <field name="model">hr_hop_dong</field>
+        <field name="arch" type="xml">
+            <form string="Hợp đồng lao động">
+                <sheet>
+                    <group>
+                        <field name="nhan_vien_id"/>
+                        <field name="ma_dinh_danh" readonly="1"/>
+
+                        <field name="loai_hop_dong"/>
+
+                        <field name="ngay_bat_dau"/>
+                        <field name="ngay_ket_thuc"/>
+
+                        <field name="luong_thoa_thuan"/>
+
+                        <field name="trang_thai"/>
+
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hop_dong" model="ir.actions.act_window">
+        <field name="name">Hợp đồng lao động</field>
+        <field name="res_model">hr_hop_dong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

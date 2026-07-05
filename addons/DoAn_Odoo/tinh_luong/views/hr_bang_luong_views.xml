@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form -->
+    <record id="view_hr_bang_luong_form" model="ir.ui.view">
+        <field name="name">hr.bang.luong.form</field>
+        <field name="model">hr_bang_luong</field>
+        <field name="arch" type="xml">
+            <form string="Bảng lương">
+                <header>
+                    <button name="action_tao_phieu_luong"
+                        string="Tạo phiếu lương"
+                        type="object"
+                        class="btn-primary"/>
+                </header>
+                
+                <sheet>
+                    <group>
+                        <field name="nhan_vien_id"/>
+                        <field name="ma_dinh_danh" readonly="1"/>
+
+                        <field name="thang"/>
+                        <field name="nam"/>
+
+                        <field name="so_cong" readonly="1"/>
+
+                        <field name="tong_phu_cap" readonly="1"/>
+                        <field name="luong_theo_cong" readonly="1"/>
+
+                        <field name="thuong"/>
+                        <field name="khau_tru"/>
+
+                        <field name="tien_bhxh" readonly="1"/>
+                        <field name="tien_bhyt" readonly="1"/>
+                        <field name="tien_bhtn" readonly="1"/>
+                        <field name="tong_bao_hiem" readonly="1"/>
+
+                        <field name="luong_thuc_nhan" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree -->
+    <record id="view_hr_bang_luong_tree" model="ir.ui.view">
+        <field name="name">hr.bang.luong.tree</field>
+        <field name="model">hr_bang_luong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="thang"/>
+                <field name="nam"/>
+                <field name="so_cong"/>
+                <field name="tong_phu_cap"/>
+                <field name="luong_theo_cong"/>
+                <field name="thuong"/>
+                <field name="khau_tru"/>
+
+                <field name="tien_bhxh"/>
+                <field name="tien_bhyt"/>
+                <field name="tien_bhtn"/>
+                <field name="tong_bao_hiem"/>
+
+                <field name="luong_thuc_nhan"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hr_bang_luong" model="ir.actions.act_window">
+        <field name="name">Bảng lương</field>
+        <field name="res_model">hr_bang_luong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

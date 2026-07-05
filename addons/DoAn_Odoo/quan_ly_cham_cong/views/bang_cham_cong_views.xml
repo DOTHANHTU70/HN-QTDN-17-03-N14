@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form -->
+    <record id="view_bang_cham_cong_form" model="ir.ui.view">
+        <field name="name">bang.cham.cong.form</field>
+        <field name="model">bang_cham_cong</field>
+        <field name="arch" type="xml">
+            <form string="Bảng chấm công">
+
+                <header>
+
+                    <button name="action_chot_cong"
+                            string="Chốt công"
+                            type="object"
+                            class="btn-primary"
+                            attrs="{'invisible':[('trang_thai','=','da_chot')]}"/>
+
+                    <field name="trang_thai"
+                           widget="statusbar"
+                           statusbar_visible="nhap,da_chot"/>
+
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="nhan_vien_id"/>
+                        <field name="ma_dinh_danh" readonly="1"/>
+
+                        <field name="thang"/>
+                        <field name="nam"/>
+
+                        <field name="so_cong" readonly="1"/>
+                        <field name="so_ngay_vang" readonly="1"/>
+                        <field name="so_ngay_nghi_phep" readonly="1"/>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree -->
+    <record id="view_bang_cham_cong_tree" model="ir.ui.view">
+        <field name="name">bang.cham.cong.tree</field>
+        <field name="model">bang_cham_cong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="thang"/>
+                <field name="nam"/>
+                <field name="so_cong"/>
+                <field name="so_ngay_vang"/>
+                <field name="so_ngay_nghi_phep"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_bang_cham_cong" model="ir.actions.act_window">
+        <field name="name">Bảng chấm công</field>
+        <field name="res_model">bang_cham_cong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

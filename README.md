@@ -4,7 +4,7 @@
     </a>
 </h2>
 <h2 align="center">
-    PLATFORM ERP
+    Hệ thống Quản lý Nhân sự - Chấm công - Tính lương trên Odoo 15
 </h2>
 <div align="center">
     <p align="center">
@@ -20,7 +20,11 @@
 </div>
 
 ## 📖 1. Giới thiệu
-Platform ERP được áp dụng vào học phần Thực tập doanh nghiệp dựa trên mã nguồn mở Odoo. 
+Đây là đồ án xây dựng hệ thống **Quản lý nhân sự, chấm công và tính lương** trên nền tảng **Odoo 15**.
+
+Hệ thống được phát triển bằng Python và XML theo kiến trúc module của Odoo.
+
+---
 
 ## 🔧 2. Các công nghệ được sử dụng
 <div align="center">
@@ -35,69 +39,189 @@ Platform ERP được áp dụng vào học phần Thực tập doanh nghiệp d
 ### Cơ sở dữ liệu
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 </div>
+# Chức năng chính
 
-## 🚀 3. Các project đã thực hiện dựa trên Platform
+## 1. Quản lý nhân sự
 
-Một số project sinh viên đã thực hiện:
-- #### [Khoá 15](./docs/projects/K15/README.md)
-- #### [Khoá 16](./docs/projects/K16/README.md)
-- #### [Khoá 17](./docs/projects/K17/README.md)
-## ⚙️ 4. Cài đặt
-
-### 4.1. Cài đặt công cụ, môi trường và các thư viện cần thiết
-
-#### 4.1.1. Tải project.
-```
-git clone https://github.com/FIT-DNU/Business-Internship.git
-```
-#### 4.1.2. Cài đặt các thư viện cần thiết
-Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
-
-```
-sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
-```
-#### 4.1.3. Khởi tạo môi trường ảo.
-- Khởi tạo môi trường ảo
-```
-python3.10 -m venv ./venv
-```
-- Thay đổi trình thông dịch sang môi trường ảo
-```
-source venv/bin/activate
-```
-- Chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
-```
-pip3 install -r requirements.txt
-```
-### 4.2. Setup database
-
-Khởi tạo database trên docker bằng việc thực thi file dockercompose.yml.
-```
-sudo docker-compose up -d
-```
-### 4.3. Setup tham số chạy cho hệ thống
-Tạo tệp **odoo.conf** có nội dung như sau:
-```
-[options]
-addons_path = addons
-db_host = localhost
-db_password = odoo
-db_user = odoo
-db_port = 5431
-xmlrpc_port = 8069
-```
-Có thể kế thừa từ file **odoo.conf.template**
-### 4.4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
-Lệnh chạy
-```
-python3 odoo-bin.py -c odoo.conf -u all
-```
-Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
-
-## 📝 5. License
-
-© 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
+- Thêm nhân viên
+- Sửa thông tin nhân viên
+- Xóa nhân viên
+- Tìm kiếm nhân viên
+- Quản lý thông tin cá nhân
+- Mã định danh nhân viên
 
 ---
 
-    
+## 2. Quản lý chấm công
+
+- Chấm công theo ngày
+- Quản lý bảng chấm công tháng
+- Tự động thống kê:
+  - Số công
+  - Số ngày vắng
+  - Số ngày nghỉ phép
+- Chốt công
+
+---
+
+## 3. Tính lương
+
+- Quản lý lương cơ bản
+- Quản lý hợp đồng lao động
+- Quản lý tham số lương
+- Tính lương theo số công
+- Tính phụ cấp
+- Tính BHXH
+- Tính BHYT
+- Tính BHTN
+- Tính tổng bảo hiểm
+- Tính lương thực nhận
+
+---
+
+## 4. Phiếu lương
+
+- Tự động sinh phiếu lương từ bảng lương
+- Xem chi tiết phiếu lương
+- Lưu lịch sử phiếu lương
+
+---
+
+## 5. Đơn từ
+
+- Tạo đơn
+- Duyệt đơn
+- Từ chối đơn
+- Theo dõi trạng thái
+
+---
+
+# Kiến trúc hệ thống
+
+```
+Quản lý nhân sự
+        │
+        ▼
+   Chấm công
+        │
+        ▼
+ Bảng chấm công
+        │
+        ▼
+   Tính lương
+        │
+        ▼
+  Bảng lương
+        │
+        ▼
+  Phiếu lương
+```
+
+---
+
+# Cấu trúc project
+
+```
+DoAn_Odoo
+│
+├── nhan_su
+│   ├── models
+│   ├── views
+│   ├── security
+│   └── __manifest__.py
+│
+├── quan_ly_cham_cong
+│   ├── models
+│   ├── views
+│   ├── security
+│   └── __manifest__.py
+│
+├── tinh_luong
+│   ├── models
+│   ├── views
+│   ├── security
+│   └── __manifest__.py
+│
+└── README.md
+```
+
+---
+
+# Luồng xử lý
+
+```
+Nhân viên
+      │
+      ▼
+Chấm công hàng ngày
+      │
+      ▼
+Bảng chấm công tháng
+      │
+      ▼
+Tính lương
+      │
+      ▼
+Sinh bảng lương
+      │
+      ▼
+Sinh phiếu lương
+```
+
+---
+
+# Hướng dẫn cài đặt
+
+## Clone project
+
+```bash
+git clone https://github.com/DOTHANHTU70/chamcong_tinhluong-odoo.git
+```
+
+## Khởi động PostgreSQL
+
+```bash
+docker start postgres_odoo-base
+```
+
+## Kích hoạt môi trường
+
+```bash
+cd ~/odoo-fitdnu
+source venv/bin/activate
+```
+
+## Chạy Odoo
+
+```bash
+python3 odoo-bin -c odoo.conf
+```
+
+---
+
+# Hình ảnh hệ thống
+
+Có thể bổ sung:
+
+- Quản lý nhân viên
+- Chấm công
+- Bảng chấm công
+- Tính lương
+- Phiếu lương
+
+---
+
+# Tác giả
+
+**Họ tên:** Đỗ Thành Tú
+
+**Trường:** Đại học Đại Nam
+
+**Chuyên ngành:** Công nghệ thông tin
+
+---
+
+# Giấy phép
+
+Đồ án phục vụ mục đích học tập.
+

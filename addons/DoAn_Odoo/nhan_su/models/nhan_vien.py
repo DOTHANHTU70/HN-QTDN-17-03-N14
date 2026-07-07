@@ -10,10 +10,14 @@ class NhanVien(models.Model):
     ngay_sinh = fields.Date(string='Ngày sinh')
     que_quan = fields.Char(string='Quê quán')
     email = fields.Char(string='Email')
+    
+    
+    image_1920 = fields.Image(string="Ảnh chân dung", max_width=1920, max_height=1920)
+
     _sql_constraints = [
-    (
-        'unique_ma_dinh_danh',
-        'unique(ma_dinh_danh)',
-        'Mã định danh đã tồn tại!'
-    ),
-]
+        (
+            'unique_ma_dinh_danh',
+            'unique(ma_dinh_danh)',
+            'Mã định danh đã tồn tại!'
+        ),
+    ]

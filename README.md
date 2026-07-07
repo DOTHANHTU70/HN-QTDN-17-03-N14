@@ -170,58 +170,139 @@ Sinh phiếu lương
 
 ---
 
-# Hướng dẫn cài đặt
+## ⚙️ 4. Cài đặt
 
-## Clone project
+### 4.1. Cài đặt công cụ, môi trường và các thư viện cần thiết
+
+#### 4.1.1. Tải project
+
+Clone project từ GitHub:
 
 ```bash
-git clone https://github.com/DOTHANHTU70/chamcong_tinhluong-odoo.git
+git clone https://github.com/DOTHANHTU70/HN-QTDN-17-03-N14.git
 ```
 
-## Khởi động PostgreSQL
+Di chuyển vào thư mục project:
+
+```bash
+cd HN-QTDN-17-03-N14
+```
+
+---
+
+#### 4.1.2. Cài đặt các thư viện cần thiết
+
+Thực thi các lệnh sau:
+
+```bash
+sudo apt-get install libxml2-dev \
+libxslt-dev \
+libldap2-dev \
+libsasl2-dev \
+libssl-dev \
+python3.10-distutils \
+python3.10-dev \
+build-essential \
+libffi-dev \
+zlib1g-dev \
+python3.10-venv \
+libpq-dev
+```
+
+---
+
+#### 4.1.3. Khởi tạo môi trường ảo
+
+Khởi tạo Virtual Environment
+
+```bash
+python3.10 -m venv ./venv
+```
+
+Kích hoạt môi trường
+
+```bash
+source venv/bin/activate
+```
+
+Cài đặt các thư viện của project
+
+```bash
+pip3 install -r requirements.txt
+```
+
+---
+
+### 4.2. Setup Database
+
+Khởi tạo cơ sở dữ liệu PostgreSQL bằng Docker.
+
+```bash
+sudo docker-compose up -d
+```
+
+Kiểm tra container
+
+```bash
+docker ps
+```
+
+Nếu container đã tồn tại nhưng đang dừng:
 
 ```bash
 docker start postgres_odoo-base
 ```
 
-## Kích hoạt môi trường
+---
+
+### 4.3. Setup tham số chạy hệ thống
+
+Tạo file `odoo.conf`
+
+```ini
+[options]
+addons_path = addons
+db_host = localhost
+db_password = odoo
+db_user = odoo
+db_port = 5431
+xmlrpc_port = 8069
+```
+
+Có thể kế thừa từ file:
+
+```text
+odoo.conf.template
+```
+
+---
+
+### 4.4. Chạy hệ thống
+
+Kích hoạt môi trường ảo
 
 ```bash
-cd ~/odoo-fitdnu
 source venv/bin/activate
 ```
 
-## Chạy Odoo
+Chạy Odoo
 
 ```bash
-python3 odoo-bin -c odoo.conf
+python3 odoo-bin -c odoo.conf -u all
 ```
 
 ---
 
-# Hình ảnh hệ thống
+### 4.5. Truy cập hệ thống
 
-Có thể bổ sung:
+Sau khi khởi động thành công, mở trình duyệt và truy cập:
 
-- Quản lý nhân viên
-- Chấm công
-- Bảng chấm công
-- Tính lương
-- Phiếu lương
+```text
+http://localhost:8069
+```
 
----
+Đăng nhập bằng tài khoản quản trị để sử dụng hệ thống.
 
-# Tác giả
+## 📄 License
 
-**Họ tên:** Đỗ Thành Tú
-
-**Trường:** Đại học Đại Nam
-
-**Chuyên ngành:** Công nghệ thông tin
-
----
-
-# Giấy phép
-
-Đồ án phục vụ mục đích học tập.
-
+© 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
